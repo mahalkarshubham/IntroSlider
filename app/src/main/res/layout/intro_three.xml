@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/payment"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Successful"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your payment has been successfully completed. You will receive a confirmation email within a few minutes. "
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
