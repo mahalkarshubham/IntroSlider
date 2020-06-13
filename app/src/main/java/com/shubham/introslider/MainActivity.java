@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvNext;
+    private TextView tvNext, tvSkip;
     private ViewPager viewPager;
     private LinearLayout layoutDots;
     private IntroPref introPref;
@@ -40,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        if (Build.VERSION.SDK_INT >= 21){
+        if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
                     View.SYSTEM_UI_FLAG_FULLSCREEN);
         }
 
         tvNext = findViewById(R.id.tvNext);
+        tvSkip = findViewById(R.id.tvSkip);
         viewPager = findViewById(R.id.viewPager);
         layoutDots = findViewById(R.id.layoutDots);
 
@@ -64,7 +65,19 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     launchHomeScreen();
                 }
+            }
+        });
 
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int current = getItem(+1);
+                if (current < layouts.length) {
+                    // move to next screen
+                    viewPager.setCurrentItem(current + 2);
+                } else {
+                    launchHomeScreen();
+                }
             }
         });
 
@@ -78,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeStatusBarColor() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
@@ -89,13 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
         }
 
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-
             if (position == layouts.length - 1) {
                 tvNext.setText("START");
             } else {
@@ -105,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
 
